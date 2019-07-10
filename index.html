@@ -86,6 +86,7 @@
       
         <p>利用hexo博客框架搭建一个个人博客网站</p>
 <p>准备：注册github的账户：网址:<a href="https://github.com" target="_blank" rel="noopener">https://github.com</a><br>    安装好：git工具和node.js<br>    node.js下载链接：<a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a><br>    参考博客网站：<a href="https://www.yanzehao.top/" target="_blank" rel="noopener">https://www.yanzehao.top/</a><br>参考bilibili UP主：<a href="https://www.bilibili.com/video/av44544186?t=1425" target="_blank" rel="noopener">https://www.bilibili.com/video/av44544186?t=1425</a></p>
+<p>ssh配置参考：<a href="https://github.com/settings/keys" target="_blank" rel="noopener">https://github.com/settings/keys</a></p>
 <pre><code>隆重感谢！</code></pre><p>操作教程：<br>1、node -v 查看<br>    npm -v 查看包</p>
 <p>2、因为国内下载速度慢，所以先安装淘宝的镜像源：<br>    npm install -g cnpm –registry-<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a></p>
 <p>3、安装hexo<br>    cnpm install -g hexo-cli</p>
@@ -101,11 +102,12 @@
 <p>3、查看文章：<br>    dir /-s</p>
 <p>4、清理<br>    hexo clean</p>
 <p>5、提交：<br>    hexo g<br>6、再启动：<br>    hexo s</p>
-<p>将blog部署到github上：<br>准备：在github上创建项目，名称格式为：用户名.github.io<br>1、回到blog：<br>     cd ../..<br>2、安装git部署命令：<br>    npm install hexo-deployer-git –save</p>
-<p>3、修改配置文件：在部署的文件夹里面找到 _config.yml文件，将以下代码<br>粘贴到最后，注意：需要删除前面重复的deploy：type</p>
+<p>将blog部署到github上：<br>准备：在github上创建项目，名称格式为：用户名.github.io<br>1、安装git部署命令：<br>    npm install hexo-deployer-git –save</p>
+<p>2、修改配置文件：在部署的文件夹里面找到 _config.yml文件，将以下代码<br>粘贴到最后，注意：需要删除前面重复的deploy：type</p>
 <pre><code>deploy:type: git repo: https://github.com/NickGrit/NickGrit.github.io.git branch: master</code></pre><p>注意缩进严格要求。</p>
-<p>4、部署：<br>    pm install hexo-deployer-git –save</p>
+<p>3、部署：<br>    npm install hexo-deployer-git –save</p>
 <pre><code>hexo d</code></pre><p>5、输入github账号密码：则可以</p>
+<pre><code>如果老是失败，则可以输入以下代码：</code></pre><p>git config –global user.name “yourname”<br>git config –global user.email “<a href="mailto:youremail@example.com" target="_blank" rel="noopener">youremail@example.com</a>“</p>
 <p>更换主题：<br>1、在github里面搜索：hexo主题等关键字进行搜索。</p>
 <p>2、进到themes文件里面：<br>    cd theme</p>
 <p>2、克隆心仪主题：<br>    git clone 主题链接<br>    比如： git clone <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="noopener">https://github.com/litten/hexo-theme-yilia</a></p>
@@ -115,7 +117,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/10/我的第一篇blog文章/" data-id="cjxxc47uf0000m0mjmldfhhb5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/10/我的第一篇blog文章/" data-id="cjxxedgxq0001f4mjppl19dk8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -164,7 +166,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/10/hello-world/" data-id="cjxxc47un0001m0mjod59yi8w" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/10/hello-world/" data-id="cjxxedgxg0000f4mjvynv4a4q" class="article-share-link">Share</a>
       
       
     </footer>
