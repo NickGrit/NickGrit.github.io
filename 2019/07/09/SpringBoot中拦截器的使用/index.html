@@ -5,19 +5,19 @@
   
 
   
-  <title>Hello World | Hexo</title>
+  <title>SpringBoot中拦截器的使用 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="1.获取拦截器 package cn.tedu.store.interceptor;  import javax.servlet.http.HttpServletRequest; import javax.servlet.http.HttpServletResponse; import javax.servlet.http.HttpSession;  import org.springframew">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2019/07/10/hello-world/index.html">
+<meta property="og:title" content="SpringBoot中拦截器的使用">
+<meta property="og:url" content="http://yoursite.com/2019/07/09/SpringBoot中拦截器的使用/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="1.获取拦截器 package cn.tedu.store.interceptor;  import javax.servlet.http.HttpServletRequest; import javax.servlet.http.HttpServletResponse; import javax.servlet.http.HttpSession;  import org.springframew">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-10T13:53:10.880Z">
+<meta property="og:updated_time" content="2019-07-11T12:39:19.625Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="SpringBoot中拦截器的使用">
+<meta name="twitter:description" content="1.获取拦截器 package cn.tedu.store.interceptor;  import javax.servlet.http.HttpServletRequest; import javax.servlet.http.HttpServletResponse; import javax.servlet.http.HttpSession;  import org.springframew">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -64,10 +64,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-SpringBoot中拦截器的使用" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/07/10/hello-world/" class="article-date">
-  <time datetime="2019-07-10T13:53:10.879Z" itemprop="datePublished">2019-07-10</time>
+    <a href="/2019/07/09/SpringBoot中拦截器的使用/" class="article-date">
+  <time datetime="2019-07-09T13:55:36.000Z" itemprop="datePublished">2019-07-09</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      SpringBoot中拦截器的使用
     </h1>
   
 
@@ -86,24 +86,82 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <p>1.获取拦截器</p>
+<pre><code>package cn.tedu.store.interceptor;
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+import org.springframework.web.servlet.HandlerInterceptor;
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+public class LoginInterceptor implements HandlerInterceptor{
 
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+    /**
+     * 拦截器
+     */
+@Override
+public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+        throws Exception {
 
+    //获取哦HttpSession对象
+    HttpSession session = request.getSession();
+    //判断session总是否由登录信息
+    if(session.getAttribute(&quot;uid&quot;) == null) {
+        //没有登录信息，则重定向到登录页
+        response.sendRedirect(&quot;/web/login.html&quot;);
+        //执行拦截
+        return false;
+    }
+    //方行
+    return true;
+}</code></pre><p>}</p>
+<p>2.配置拦截器：</p>
+<pre><code>package cn.tedu.store.config;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import cn.tedu.store.interceptor.LoginInterceptor;
+//表示他是一个配置类
+@Configuration
+public class InterceptorConfigurer implements WebMvcConfigurer{
+
+    //拦截器
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        // 创建拦截器对象
+        HandlerInterceptor interceptor = new LoginInterceptor();
+
+        // 白名单
+        List&lt;String&gt; patterns = new ArrayList&lt;&gt;();
+        patterns.add(&quot;/bootstrap3/**&quot;);
+        patterns.add(&quot;/css/**&quot;);
+        patterns.add(&quot;/js/**&quot;);
+        patterns.add(&quot;/images/**&quot;);
+
+        patterns.add(&quot;/web/register.html&quot;);
+        patterns.add(&quot;/web/login.html&quot;);
+
+        patterns.add(&quot;/users/reg&quot;);
+        patterns.add(&quot;/users/login&quot;);
+
+        // 注册拦截器
+        registry.addInterceptor(interceptor)
+            .addPathPatterns(&quot;/**&quot;)
+            .excludePathPatterns(patterns);
+    }
+
+}</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/10/hello-world/" data-id="cjxynt2cj00015smj0sjczb3z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/09/SpringBoot中拦截器的使用/" data-id="cjxynt2cd00005smjx5t9zrpz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -112,19 +170,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/07/10/我的第一篇blog文章/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/07/10/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          我的第一篇blog文章
+          Hello World
         
       </div>
     </a>
   
   
-    <a href="/2019/07/09/SpringBoot中拦截器的使用/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/07/08/基于SpringMVC的文件上传(Upload：上载)/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">SpringBoot中拦截器的使用</div>
+      <div class="article-nav-title">基于SpringMVC的文件上传(Upload：上载)</div>
     </a>
   
 </nav>

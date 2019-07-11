@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>基于SpringMVC的文件上传(Upload：上载) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="21.1. 目标在页面中点击浏览按钮，可以将指定的文件上传到服务器。 21.2. 创建项目创建Maven Project，Group Id为cn.tedu.spring，Artifact Id为SPRINGMVC-UPLOAD，Packaging为war，创建好项目后，生成web.xml文件，添加spring-webmvc依赖，添加Tomcat运行环境(必须保证Eclipse中的Servers项目">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于SpringMVC的文件上传(Upload：上载)">
+<meta property="og:url" content="http://yoursite.com/2019/07/08/基于SpringMVC的文件上传(Upload：上载)/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="21.1. 目标在页面中点击浏览按钮，可以将指定的文件上传到服务器。 21.2. 创建项目创建Maven Project，Group Id为cn.tedu.spring，Artifact Id为SPRINGMVC-UPLOAD，Packaging为war，创建好项目后，生成web.xml文件，添加spring-webmvc依赖，添加Tomcat运行环境(必须保证Eclipse中的Servers项目">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-11T12:37:51.867Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于SpringMVC的文件上传(Upload：上载)">
+<meta name="twitter:description" content="21.1. 目标在页面中点击浏览按钮，可以将指定的文件上传到服务器。 21.2. 创建项目创建Maven Project，Group Id为cn.tedu.spring，Artifact Id为SPRINGMVC-UPLOAD，Packaging为war，创建好项目后，生成web.xml文件，添加spring-webmvc依赖，添加Tomcat运行环境(必须保证Eclipse中的Servers项目">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-基于SpringMVC的文件上传(Upload：上载)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/08/基于SpringMVC的文件上传(Upload：上载)/" class="article-date">
+  <time datetime="2019-07-08T13:55:36.000Z" itemprop="datePublished">2019-07-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基于SpringMVC的文件上传(Upload：上载)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="21-1-目标"><a href="#21-1-目标" class="headerlink" title="21.1. 目标"></a>21.1. 目标</h4><p>在页面中点击浏览按钮，可以将指定的文件上传到服务器。</p>
+<h4 id="21-2-创建项目"><a href="#21-2-创建项目" class="headerlink" title="21.2. 创建项目"></a>21.2. 创建项目</h4><p>创建Maven Project，Group Id为<code>cn.tedu.spring</code>，Artifact Id为<code>SPRINGMVC-UPLOAD</code>，Packaging为<code>war</code>，创建好项目后，生成web.xml文件，添加<code>spring-webmvc</code>依赖，添加Tomcat运行环境(必须保证Eclipse中的Servers项目是打开的)，复制spring的配置文件，删除所有已经存在的配置，复制前序项目中web.xml中的配置。</p>
+<p>另外，为了实现文件上传，还需要添加依赖：</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;commons-fileupload&lt;/groupId&gt;
+    &lt;artifactId&gt;commons-fileupload&lt;/artifactId&gt;
+    &lt;version&gt;1.4&lt;/version&gt;
+&lt;/dependency&gt;</code></pre><h4 id="21-3-页面"><a href="#21-3-页面" class="headerlink" title="21.3. 页面"></a>21.3. 页面</h4><p>在<strong>webapp</strong>下创建<code>index.html</code>页面，并在页面中设计：</p>
+<pre><code>&lt;form method=&quot;post&quot; enctype=&quot;multipart/form-data&quot; action=&quot;&quot;&gt;
+    &lt;p&gt;请选择要上传的文件：&lt;/p&gt;
+    &lt;p&gt;&lt;input type=&quot;file&quot; name=&quot;file&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;input type=&quot;submit&quot; value=&quot;上传&quot; /&gt;&lt;/p&gt;
+&lt;/form&gt;</code></pre><p>以上代码中，<code>&lt;form&gt;</code>的<code>method</code>属性值必须是<code>post</code>，<code>enctype</code>属性值必须是<code>multipart/form-data</code>，且上传控件的<code>type</code>属性值必须是<code>file</code>。</p>
+<h4 id="21-4-使用控制器接收请求"><a href="#21-4-使用控制器接收请求" class="headerlink" title="21.4. 使用控制器接收请求"></a>21.4. 使用控制器接收请求</h4><p>确定页面中表单的<code>action</code>属性的值为<code>upload.do</code>。</p>
+<p>检查<code>spring.xml</code>中配置的组件扫描为<code>cn.tedu.spring</code>。</p>
+<p>创建<code>cn.tedu.spring.UploadController</code>控制器类，并在类之前添加<code>@Controller</code>注解，然后，添加处理请求的方法：</p>
+<pre><code>@Controller
+public class UploadController {
+
+    @RequestMapping(&quot;upload.do&quot;)
+    @ResponseBody
+    public String upload() {
+        System.out.println(&quot;UploadController.upload()&quot;);
+
+        return &quot;OK&quot;;
+    }
+
+}</code></pre><h4 id="21-5-处理上传"><a href="#21-5-处理上传" class="headerlink" title="21.5. 处理上传"></a>21.5. 处理上传</h4><p>在SpringMVC框架中，使用了<code>CommonsMultipartResolver</code>对上传的数据进行处理，需要在<strong>spring.xml</strong>中配置该类：</p>
+<pre><code>&lt;bean id=&quot;multipartResolver&quot;
+    class=&quot;org.springframework.web.multipart.commons.CommonsMultipartResolver&quot;&gt;
+&lt;/bean&gt;</code></pre><p>在配置时，必须指定<code>id</code>，且值必须是<code>multipartResolver</code>。</p>
+<p>关于以上节点，可以暂不配置详细信息。</p>
+<p>然后，在处理请求的方法中，添加<code>MultipartFile file</code>参数，该参数就是用户上传的文件的数据，并在参数之前添加<code>@RequestParam</code>注解。</p>
+<p>最后，调用参数对象的<code>void transferTo(File dest)</code>方法即可将用户上传的文件保存到服务器的硬盘中！</p>
+<pre><code>@RequestMapping(&quot;upload.do&quot;)
+@ResponseBody
+public String upload(
+    @RequestParam(&quot;file&quot;) MultipartFile file) 
+        throws IllegalStateException, IOException {
+    System.out.println(&quot;UploadController.upload()&quot;);
+
+    // 执行保存文件
+    File dest = new File(&quot;F:/1/a.jpg&quot;);
+    file.transferTo(dest);
+
+    return &quot;OK&quot;;
+}</code></pre><p>……..</p>
+<pre><code>@RequestMapping(&quot;upload.do&quot;)
+@ResponseBody
+public String upload(@RequestParam(&quot;file&quot;) MultipartFile file,
+        HttpServletRequest request) 
+        throws IllegalStateException, IOException {
+    System.out.println(&quot;UploadController.upload()&quot;);
+
+    // 判断上传的文件是否为空
+    boolean isEmpty = file.isEmpty();
+    System.out.println(&quot;\tisEmpty=&quot; + isEmpty);
+    if (isEmpty) {
+        throw new RuntimeException(&quot;上传失败！上传的文件为空！&quot;);
+    }
+
+    // 检查文件大小
+    long fileSize = file.getSize();
+    System.out.println(&quot;\tsize=&quot; + fileSize);
+    if (fileSize &gt; 1 * 1024 * 1024) {
+        throw new RuntimeException(&quot;上传失败！上传的文件大小超出了限制！&quot;);
+    }
+
+    // 检查文件MIME类型
+    String contentType = file.getContentType();
+    System.out.println(&quot;\tcontentType=&quot; + contentType);
+    List&lt;String&gt; types = new ArrayList&lt;String&gt;();
+    types.add(&quot;image/jpeg&quot;);
+    types.add(&quot;image/png&quot;);
+    types.add(&quot;image/gif&quot;);
+    if (!types.contains(contentType)) {
+        throw new RuntimeException(&quot;上传失败！不允许上传此类型的文件！&quot;);
+    }
+
+    // 准备文件夹
+    String parentDir = request.getServletContext().getRealPath(&quot;upload&quot;);
+    // request.getSession().getServletContext().getRealPath(&quot;&quot;);
+    // request.getRealPath(&quot;&quot;);
+    System.out.println(&quot;\tpath=&quot; + parentDir);
+    File parent = new File(parentDir);
+    if (!parent.exists()) {
+        parent.mkdirs();
+    }
+
+    // 获取原始文件名
+    String originalFilename = file.getOriginalFilename();
+    System.out.println(&quot;\toriginalFilename=&quot; + originalFilename);
+
+    // 确定最终保存时使用的文件
+    String filename = UUID.randomUUID().toString();
+    String suffix = &quot;&quot;;
+    int beginIndex = originalFilename.lastIndexOf(&quot;.&quot;);
+    if (beginIndex != -1) {
+        suffix = originalFilename.substring(beginIndex);
+    }
+
+    // 执行保存文件
+    File dest = new File(parent, filename + suffix);
+    file.transferTo(dest);
+
+    return &quot;OK&quot;;
+}</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/08/基于SpringMVC的文件上传(Upload：上载)/" data-id="cjxynt2co00035smjvn9l6qs5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/09/SpringBoot中拦截器的使用/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          SpringBoot中拦截器的使用
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/10/使用Git建立本地仓库并上传代码到GitHub/">使用Git建立本地仓库并上传代码到GitHub</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/10/我的第一篇blog文章/">我的第一篇blog文章</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/10/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/09/SpringBoot中拦截器的使用/">SpringBoot中拦截器的使用</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/08/基于SpringMVC的文件上传(Upload：上载)/">基于SpringMVC的文件上传(Upload：上载)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
